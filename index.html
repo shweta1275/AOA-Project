@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Selection Sort Visual Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body>
+  <h1>Selection Sort Visual Simulator</h1>
+  <div class="controls">
+    <button onclick="generateArray()">🔄 Generate New Array</button>
+    <button onclick="selectionSort()">▶️ Run Selection Sort</button>
+  </div>
+  <div id="status">Array ready. Click “Run Selection Sort” to start.</div>
+  <svg id="chart" width="900" height="400"></svg>
+  <script src="script.js"></script>
+</body>
+</html>
