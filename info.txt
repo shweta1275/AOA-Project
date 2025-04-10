@@ -1,2 +1,0 @@
-This is the tester file for the new git repo in making
-for the AOA project basid on the selection sort we have delevopled a animated code using js 
