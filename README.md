@@ -17,14 +17,6 @@ To build a dynamic visual tool to help understand the internal workings of the *
 - Pause/Stop sorting process at any point.
 - Status messages explain each step of sorting.
 
-## 🎨 Color Legend
-| Color | Meaning |
-|-------|---------|
-| 🔵 Blue | Current element |
-| 🟠 Orange | Current minimum element |
-| 🟩 Green | Sorted element |
-| ⚪ Gray | Unsorted element |
-
 ## 🧠 How to Use
 1. Click **"Generate New Array"** to create new values.
 2. Click **"Run Selection Sort"** to start visualizing the algorithm.
