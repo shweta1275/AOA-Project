@@ -42,6 +42,7 @@ h1 {
 
 .controls button:hover {
   background-color: #5a3d2b;
+  color: #fff8e7;
   transform: scale(1.05);
 }
 
