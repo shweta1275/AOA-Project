@@ -2,6 +2,7 @@ const svg = d3.select("#chart");
 const width = +svg.attr("width");
 const height = +svg.attr("height");
 let array = [];
+let stopRequested = false;
 
 function generateArray() {
   array = Array.from({ length: 20 }, () => Math.floor(Math.random() * 90) + 10);
@@ -41,17 +42,28 @@ function drawArray(data, currentIdx = -1, minIdx = -1, sortedUpto = -1) {
 }
 
 async function selectionSort() {
+  stopRequested = false; 
   let n = array.length;
   let arr = [...array];
   const status = document.getElementById("status");
 
   for (let i = 0; i < n - 1; i++) {
+    if (stopRequested) {
+      status.textContent = "Sorting stopped by user.";
+      return;
+    }
+
     let minIdx = i;
     status.textContent = `Looking for the smallest element from index ${i} to ${n - 1}`;
     drawArray(arr, i, minIdx, i - 1);
     await delay(500);
 
     for (let j = i + 1; j < n; j++) {
+      if (stopRequested) {
+        status.textContent = "Sorting stopped by user.";
+        return;
+      }
+
       drawArray(arr, j, minIdx, i - 1);
       await delay(300);
 
@@ -79,6 +91,10 @@ async function selectionSort() {
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function stopSort() {
+  stopRequested = true;
 }
 
 // Auto-generate on page load
