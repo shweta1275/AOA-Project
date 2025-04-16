@@ -29,7 +29,7 @@ h1 {
 
 .controls button {
   padding: 12px 24px;
-  background-color: #fff8e7;  /* Rich coffee brown */
+  background-color: #e6d9bb;  /* Rich coffee brown */
   color: #000000;
   border: none;
   border-radius: 8px;
@@ -41,8 +41,7 @@ h1 {
 }
 
 .controls button:hover {
-  background-color: #5a3d2b;
-  color: #fff8e7;
+  background-color: #d8c9a6;
   transform: scale(1.05);
 }
 
