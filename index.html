@@ -10,10 +10,14 @@
   <h1>Selection Sort Visual Simulator 📊</h1>
   
   <div class="controls">
+    <div class="slider-control">
+      <label for="arraySize">Array Size:</label>
+      <input id="arraySize" type="number" min="5" max="100" value="20">
+    </div>
     <button onclick="generateArray()">🔄 Generate New Array</button>
     <button onclick="selectionSort()">▶️ Run Selection Sort</button>
     <button id="stopButton" onclick="stopOrResumeSort()">⛔ Stop</button>
-    <button id="toggleView">Toggle 2D/3D View</button>
+    <!-- <button id="toggleView">Toggle 2D/3D View</button> -->
     <div class="theme-toggle" title="Toggle Dark Mode">
       <label class="switch">
         <input type="checkbox" id="themeSwitch">
@@ -26,18 +30,16 @@
     
 
     <div class="slider-control">
-      <label for="speedControl">Speed:</label>
-      <input id="speedControl" type="range" min="100" max="2000" step="100" value="500">
+      <label for="speedControl">Speed(ms):</label>
+      <div class="slider-wrapper">
+        <input id="speedControl" type="range" min="100" max="2000" step="100" value="500">
+        <div id="currentSpeed" class="current-speed">500</div>
+      </div>
     </div>
 
-    <div class="slider-control">
+    <div class="slider-control" id="rewindWrapper" style="display: none;">
       <label for="rewindControl">Rewind:</label>
-      <input id="rewindControl" type="range" min="0" max="0" step="1">
-    </div>
-
-    <div class="slider-control">
-      <label for="arraySize">Array Size:</label>
-      <input id="arraySize" type="number" min="5" max="100" value="20">
+      <input id="rewindControl" type="range" min="0" max="0" step="1" disabled>
     </div>
   </div>
 
