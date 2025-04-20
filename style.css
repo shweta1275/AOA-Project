@@ -2,19 +2,19 @@ body {
   font-family: 'Times New Roman', Times, serif;
   background: linear-gradient(to right, #371e03, #6f370f, #5a270f);  /* Coffee shades */
   margin: 0;
-  padding: 0; /* Remove padding to ensure proper centering */
-  color: #f5e6cc;  /* Creamy text */
+  padding: 0;
+  color: #f5e6cc;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center horizontally */
-  justify-content: center; /* Center vertically */
+  align-items: center;
+  justify-content: center;
 }
 
 h1 {
   margin-top: -20px;
   text-align: center;
-  color: #f5e6cc;  /* Cream */
+  color: #f5e6cc;
   font-size: 2.5rem;
   letter-spacing: 1px;
   margin-bottom: 30px;
@@ -22,7 +22,7 @@ h1 {
 }
 
 .controls {
-  width: 49%; /* Adjust width to fit content */
+  width: 49%;
   display: flex;
   justify-content: center;
   gap: 15px;
@@ -33,7 +33,7 @@ h1 {
 
 .controls button {
   padding: 12px 24px;
-  background-color: #e6d9bb;  /* Rich coffee brown */
+  background-color: #e6d9bb;
   color: #000000;
   border: none;
   border-radius: 8px;
@@ -59,28 +59,46 @@ h1 {
 
 svg {
   display: block;
-  margin: 0 auto; /* Center the SVG horizontally */
-  background: #fff8e7;   /* Creamy background for contrast */
-  border: 5px solid #271105;  /* Medium brown border */
+  margin: 0 auto;
+  background: #fff8e7;
+  border: 5px solid #271105;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 /* Bar plot styling */
 .bar {
-  fill: #c49e70;  /* Light coffee/tan */
+  fill: #c49e70;
   transition: fill 0.3s;
-  /* Note: For rounded corners on SVG rects, use rx and ry attributes in D3 code */
 }
 
+/* Highlight current bar being checked */
 .bar.current {
-  fill: #a67c52;  /* Medium brown */
+  fill: #a67c52;
 }
 
+/* Highlight current minimum bar */
 .bar.min {
-  fill: #8b4513;  /* Darker, rich brown */
+  fill: #8b4513;
 }
 
+/* Highlight sorted portion */
 .bar.sorted {
-  fill: #582609;  /* Burly Wood, a light, warm tan */
+  fill: #582609;
 }
+
+.bar.three-d {
+  fill: #b58900;
+  filter: drop-shadow(4px 4px 3px rgba(0, 0, 0, 0.4));
+  transition: filter 0.3s ease;
+}
+.slider-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-weight: bold;
+  color: #f5e6cc;
+}
+
+
