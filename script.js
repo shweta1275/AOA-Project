@@ -12,7 +12,10 @@ let isSorting = false;
 let minIdx = 0;
 let history = [];
 let is3D = false;
+let swapCount = 0;
+let startTime = 0;
 
+// Add gradient definition
 const defs = svg.append("defs");
 const gradient = defs.append("linearGradient")
   .attr("id", "barGradient")
@@ -21,6 +24,7 @@ const gradient = defs.append("linearGradient")
 gradient.append("stop").attr("offset", "0%").attr("stop-color", "#ffdb92");
 gradient.append("stop").attr("offset", "100%").attr("stop-color", "#b58900");
 
+// Generate array and reset everything
 function generateArray() {
   const size = parseInt(document.getElementById("arraySize").value);
   array = Array.from({ length: size }, () => Math.floor(Math.random() * 90) + 10);
@@ -33,10 +37,14 @@ function generateArray() {
   isSorting = false;
   history = [];
   document.getElementById("rewindControl").value = 0;
+  swapCount = 0;
+  startTime = Date.now();
+  updateMetrics();
   drawArray(array);
   document.getElementById("status").textContent = "New array generated. Click “Run Selection Sort” to start.";
 }
 
+// Draw the bars and labels
 function drawArray(data, currentIdx = -1, minIdx = -1, sortedUpto = -1) {
   svg.selectAll("*:not(defs)").remove();
   const gap = 3;
@@ -71,6 +79,13 @@ function drawArray(data, currentIdx = -1, minIdx = -1, sortedUpto = -1) {
     .text(d => d);
 }
 
+// Update swaps and time
+function updateMetrics() {
+  const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
+  document.getElementById("metrics").textContent = `🔁 Swaps: ${swapCount} | ⏱️ Time: ${elapsed}s`;
+}
+
+// Reapply previous state
 function saveHistory() {
   history.push([...arr]);
   const rewindSlider = document.getElementById("rewindControl");
@@ -86,10 +101,25 @@ document.getElementById("rewindControl").addEventListener("input", function () {
   }
 });
 
-function getSpeed() {
-  return parseInt(document.getElementById("speedControl").value);
+// Toggle 2D/3D view
+document.getElementById("toggleView").addEventListener("click", () => {
+  is3D = !is3D;
+  drawArray(arr);
+});
+
+// 🌗 Toggle Dark Mode on switch toggle
+document.getElementById("themeSwitch").addEventListener("change", function () {
+  document.body.classList.toggle("dark-mode");
+});
+
+// Delay based on speed slider (reversed: higher = faster)
+function delay() {
+  const raw = parseInt(document.getElementById("speedControl").value);
+  const adjusted = 2100 - raw;
+  return new Promise(resolve => setTimeout(resolve, adjusted));
 }
 
+// Stop or resume sorting
 function stopOrResumeSort() {
   const stopButton = document.getElementById("stopButton");
   if (!isPaused) {
@@ -108,6 +138,7 @@ function stopOrResumeSort() {
   }
 }
 
+// Main Selection Sort algorithm
 async function selectionSort() {
   if (isSorting) return;
   isSorting = true;
@@ -125,7 +156,7 @@ async function selectionSort() {
     status.textContent = `Looking for the smallest element from index ${i} to ${n - 1}`;
     drawArray(arr, i, minIdx, i - 1);
     saveHistory();
-    await delay(getSpeed());
+    await delay();
 
     for (let j = currentJ || i + 1; j < n; j++) {
       currentJ = j;
@@ -136,14 +167,14 @@ async function selectionSort() {
 
       drawArray(arr, j, minIdx, i - 1);
       saveHistory();
-      await delay(getSpeed());
+      await delay();
 
       if (arr[j] < arr[minIdx]) {
         minIdx = j;
         status.textContent = `New minimum found at index ${j} (Value: ${arr[j]})`;
         drawArray(arr, j, minIdx, i - 1);
         saveHistory();
-        await delay(getSpeed());
+        await delay();
       }
     }
 
@@ -151,10 +182,12 @@ async function selectionSort() {
 
     if (minIdx !== i) {
       [arr[i], arr[minIdx]] = [arr[minIdx], arr[i]];
+      swapCount++;
+      updateMetrics();
       status.textContent = `Swapped elements at index ${i} and ${minIdx}`;
       drawArray(arr, i, minIdx, i - 1);
       saveHistory();
-      await delay(getSpeed());
+      await delay();
     }
 
     drawArray(arr, -1, -1, i);
@@ -168,11 +201,5 @@ async function selectionSort() {
   isSorting = false;
 }
 
-function delay() {
-  const raw = parseInt(document.getElementById("speedControl").value);
-  const adjusted = 2100 - raw;
-  return new Promise(resolve => setTimeout(resolve, adjusted));
-}
-
-
+// Auto-generate array on page load
 generateArray();
