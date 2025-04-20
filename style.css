@@ -2,15 +2,17 @@ body {
   font-family: 'Times New Roman', Times, serif;
   background: linear-gradient(to right, #371e03, #6f370f, #5a270f);  /* Coffee shades */
   margin: 0;
-  padding: 20px;
+  padding: 0; /* Remove padding to ensure proper centering */
   color: #f5e6cc;  /* Creamy text */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
 }
 
 h1 {
+  margin-top: -20px;
   text-align: center;
   color: #f5e6cc;  /* Cream */
   font-size: 2.5rem;
@@ -20,10 +22,12 @@ h1 {
 }
 
 .controls {
+  width: 49%; /* Adjust width to fit content */
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin-bottom: 25px;
+  margin: 25px;
+  margin-bottom: 40px;
   flex-wrap: wrap;
 }
 
@@ -48,14 +52,14 @@ h1 {
 #status {
   text-align: center;
   font-size: 18px;
-  margin-bottom: 15px;
+  margin-top: 20px;
   font-weight: bold;
   color: #f5e6cc;
 }
 
 svg {
   display: block;
-  margin: auto;
+  margin: 0 auto; /* Center the SVG horizontally */
   background: #fff8e7;   /* Creamy background for contrast */
   border: 5px solid #271105;  /* Medium brown border */
   border-radius: 12px;
