@@ -13,7 +13,6 @@ let minIdx = 0;
 let history = [];
 let is3D = false;
 
-// Add gradient definition
 const defs = svg.append("defs");
 const gradient = defs.append("linearGradient")
   .attr("id", "barGradient")
@@ -85,11 +84,6 @@ document.getElementById("rewindControl").addEventListener("input", function () {
     drawArray(arr);
     document.getElementById("status").textContent = `⏪ Rewound to step ${idx}`;
   }
-});
-
-document.getElementById("toggleView").addEventListener("click", () => {
-  is3D = !is3D;
-  drawArray(arr); // Re-render with 3D or normal class
 });
 
 function getSpeed() {
@@ -176,7 +170,7 @@ async function selectionSort() {
 
 function delay() {
   const raw = parseInt(document.getElementById("speedControl").value);
-  const adjusted = 2100 - raw; // Invert logic: 2000 = fast, 100 = slow
+  const adjusted = 2100 - raw;
   return new Promise(resolve => setTimeout(resolve, adjusted));
 }
 
