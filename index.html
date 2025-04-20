@@ -13,12 +13,12 @@
     <button onclick="generateArray()">🔄 Generate New Array</button>
     <button onclick="selectionSort()">▶️ Run Selection Sort</button>
     <button id="stopButton" onclick="stopOrResumeSort()">⛔ Stop</button>
-    <button onclick="generateAnalysis()">📉 Generate Analysis</button>
-      <div class="theme-toggle" title="Toggle Dark Mode">
+    <button id="toggleView">Toggle 2D/3D View</button>
+    <div class="theme-toggle" title="Toggle Dark Mode">
       <label class="switch">
         <input type="checkbox" id="themeSwitch">
         <span class="slider">
-          <span class="icon sun">🌞</span>
+          <span class="icon sun">☀️</span>
           <span class="icon moon">🌙</span>
         </span>
       </label>
@@ -44,16 +44,6 @@
   <svg id="chart" width="900" height="400"></svg>
   <div id="metrics">🔁 Swaps: 0 | ⏱️ Time: 0.00s</div>
   <div id="status">Array ready. Click "Run Selection Sort" to start.</div>
-  
-  <div id="analysisModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Simulation Analysis</h2>
-      <div id="analysisGraph"></div>
-      <p id="speedInfo"></p>
-    </div>
-  </div>
-
   <script src="script.js"></script>
 </body>
 </html>
