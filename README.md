@@ -1,47 +1,56 @@
-# Selection Sort Visualizer 🔍
+🔍 Selection Sort Visualizer
+An interactive and animated visualizer for the Selection Sort algorithm, built using JavaScript and D3.js. This tool offers a more engaging way to understand how Selection Sort works through real-time animations and intuitive UI controls.
 
-An interactive simulation of the **Selection Sort algorithm** built using **JavaScript** and **D3.js**, created for the IA-2 Analysis of Algorithms assignment.
+🎯 Purpose
+To make learning sorting algorithms more interactive, visual, and accessible — especially for students and educators seeking to understand the step-by-step process of Selection Sort.
 
-## 👨‍💻 Group Members
-- Shubhpreet Kaur – 16010123328  
-- Shweta Karandikar – 16010123329  
-- Yashasvi Gupta – 16010123341  
-- Division: E-2
+🚀 Key Features
+🎲 Random Array Generation
+Instantly generate an array of 20 random integers (between 10–99) represented as vertical bars.
 
-## 🎯 Objective
-To build a dynamic visual tool to help understand the internal workings of the **Selection Sort** algorithm.
+🌀 Live Sorting Animation
+Watch the Selection Sort algorithm in action — elements being compared, minimum selection, and swaps are visually represented.
 
-## 🚀 Features
-- Generate a random array of 20 integers between 10–99.
-- Animate Selection Sort in real-time with colored bars.
-- Pause/Stop sorting process at any point.
-- Status messages explain each step of sorting.
+🎨 Color-Coded Visuals
 
-## 🧠 How to Use
-1. Click **"Generate New Array"** to create new values.
-2. Click **"Run Selection Sort"** to start visualizing the algorithm.
-3. Use the **"Stop"** button to pause the sort.
-4. Read the **status messages** to follow what's happening.
+Current index being checked: Yellow
 
-## 📦 Local Setup
-1. Clone the repository or download the zip.
-2. Open `index.html` in your browser.
-3. No additional server or build tools required.
+Minimum element: Red
 
-## 🌐 Deployment (Optional)
-You can deploy it using:
-- GitHub Pages
-- Netlify
-- Vercel
+Swapped elements: Green
 
-## 🎥 Demo Video
-A 2–3 minute video demonstrating:
-- Array generation
-- Sorting in action
-- UI explanation
-- Short code walkthrough
+Sorted part: Light Blue
 
----
+⏸️ Pause/Stop Anytime
+Users can pause the animation midway to analyze or explain steps manually.
 
-✅ Project completed for **IA-2: Analysis of Algorithms**  
-📅 Submission Date: 17-04-2025  
+💬 Real-Time Status Updates
+Detailed text explanations update below the visualizer to describe each step.
+
+🌙 Dark Mode Toggle
+Easily switch between light and dark themes. The entire interface — from icons and charts to labels and sliders — adapts for readability and aesthetics.
+
+⚡ Speed Control
+Adjust the animation speed to match your learning pace.
+
+🔁 Rewind Functionality
+Step back to revisit previous actions during the sorting process.
+
+📈 Performance Analysis (Coming Soon)
+View a basic comparison of best, average, and worst-case time complexities using a graph (using Chart.js).
+
+🌐 Live Demo
+Check out the live version here:
+🔗 https://aoaproject.vercel.app
+
+📂 Tech Stack
+HTML5 / CSS3
+
+JavaScript (Vanilla)
+
+D3.js for dynamic SVG-based data rendering
+
+Chart.js for performance graphs
+
+📌 Summary
+This visualizer reimagines algorithm learning by combining interactive elements, animated sorting logic, and user-friendly design — perfect for making abstract concepts more tangible and fun.
