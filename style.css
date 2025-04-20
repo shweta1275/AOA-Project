@@ -58,7 +58,7 @@ svg {
   background: #fff8e7;
   border: 5px solid #271105;
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 16px 16px 16px rgba(0, 0, 0, 0.15);
 }
 
 /* Bar plot styling */
