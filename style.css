@@ -1,4 +1,3 @@
-/* General styles */
 body {
   font-family: 'Times New Roman', Times, serif;
   background: linear-gradient(to right, #371e03, #6f370f, #5a270f);
@@ -121,8 +120,8 @@ h1 {
 
 #currentSpeed {
   position: absolute;
-  top: 25px; /* Position below the slider */
-  font-size: 10px; /* Smaller font size */
+  top: 25px;
+  font-size: 10px; 
   color: #e6d9bb;
   font-weight: bold;
   transform: translateX(-50%);
@@ -145,7 +144,6 @@ svg {
   box-shadow: 16px 16px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* Bar plot styling */
 .bar {
   fill: #e0b681;
   filter: drop-shadow(4px 4px 3px rgba(0, 0, 0, 0.4));
@@ -178,7 +176,6 @@ svg {
   text-align: center;
 }
 
-/* Dark mode */
 .dark-mode {
   background: linear-gradient(to right, #000000, #1a1a1a);
   color: #e0e0e0;
@@ -190,7 +187,7 @@ svg {
 }
 
 .dark-mode .controls button {
-  background-color: #666; /* Light mode brown color for buttons in dark mode */
+  background-color: #666;
   color: #fff;
 }
 
@@ -199,7 +196,7 @@ svg {
 }
 
 .dark-mode .bar {
-  fill: #666; /* Neutral gray for unsorted bars */
+  fill: #666;
 }
 
 .dark-mode .bar.sorted {
@@ -260,7 +257,6 @@ body.dark-mode #rewindControl::-moz-range-thumb {
   color: #e0e0e0;
 }
 
-/* Dark Mode Switch */
 .theme-toggle {
   position: absolute;
   top: 20px;

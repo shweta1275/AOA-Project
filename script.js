@@ -110,10 +110,8 @@ document.getElementById("speedControl").addEventListener("input", function () {
   const slider = this;
   const currentSpeed = document.getElementById("currentSpeed");
 
-  // Update the speed value
   currentSpeed.textContent = `${speed}`;
 
-  // Dynamically position the current speed below the slider circle
   const sliderWidth = slider.offsetWidth;
   const min = parseInt(slider.min);
   const max = parseInt(slider.max);
@@ -126,7 +124,17 @@ document.getElementById("speedControl").addEventListener("input", function () {
 function delay() {
   const raw = parseInt(document.getElementById("speedControl").value);
   const adjusted = 2100 - raw;
-  return new Promise(resolve => setTimeout(resolve, adjusted));
+
+  return new Promise(resolve => {
+    function checkPause() {
+      if (stopRequested) {
+        setTimeout(checkPause, 100);
+      } else {
+        resolve();
+      }
+    }
+    setTimeout(checkPause, adjusted); 
+  });
 }
 
 function stopOrResumeSort() {
@@ -153,22 +161,30 @@ async function selectionSort() {
   const n = arr.length;
   const status = document.getElementById("status");
 
-  for (let i = 0; i < n - 1; i++) {
+  for (let i = currentI; i < n - 1; i++) {
+    currentI = i;
     if (stopRequested) {
       isSorting = false;
       return;
     }
 
     let minIdx = i;
-    for (let j = i + 1; j < n; j++) {
+    for (let j = currentJ || i + 1; j < n; j++) {
+      currentJ = j;
+      if (stopRequested) {
+        isSorting = false;
+        return;
+      }
+
       if (arr[j] < arr[minIdx]) {
         minIdx = j;
       }
       drawArray(arr, j, minIdx, i - 1);
-      saveHistory(); // Save the current state for rewind functionality
+      saveHistory();
       await delay();
     }
 
+    currentJ = 0;
     if (minIdx !== i) {
       [arr[i], arr[minIdx]] = [arr[minIdx], arr[i]];
       swapCount++;
@@ -181,24 +197,25 @@ async function selectionSort() {
 
   drawArray(arr, -1, -1, n - 1);
   status.textContent = "✅ Array is now fully sorted!";
-  enableRewind(); // Enable the rewind slider after sorting is complete
   isSorting = false;
+  currentI = 0;
+  currentJ = 0;
 }
 
 function enableRewind() {
   const rewindWrapper = document.getElementById("rewindWrapper");
   const rewindSlider = document.getElementById("rewindControl");
 
-  rewindWrapper.style.display = "block"; // Make rewind slider visible
-  rewindSlider.disabled = false; // Enable the slider
-  rewindSlider.max = history.length - 1; // Set the max value to the number of steps
-  rewindSlider.value = history.length - 1; // Set the slider to the last step
+  rewindWrapper.style.display = "block";
+  rewindSlider.disabled = false;
+  rewindSlider.max = history.length - 1;
+  rewindSlider.value = history.length - 1;
 
   rewindSlider.addEventListener("input", function () {
     const idx = parseInt(this.value);
     if (idx < history.length) {
-      arr = [...history[idx]]; // Load the array state at the selected step
-      drawArray(arr); // Redraw the array
+      arr = [...history[idx]];
+      drawArray(arr);
       document.getElementById("status").textContent = `⏪ Rewound to step ${idx}`;
     }
   });
@@ -210,14 +227,11 @@ function generateAnalysis() {
   const analysisGraph = document.getElementById("analysisGraph");
   const speedInfo = document.getElementById("speedInfo");
 
-  // Clear previous graph
   analysisGraph.innerHTML = "";
 
-  // Get the speed value
   const speed = parseInt(document.getElementById("speedControl").value);
   speedInfo.textContent = `Simulation Speed: ${speed}ms`;
 
-  // Create the graph using D3.js
   const margin = { top: 20, right: 30, bottom: 30, left: 40 };
   const width = 600 - margin.left - margin.right;
   const height = 300 - margin.top - margin.bottom;
@@ -271,15 +285,12 @@ function generateAnalysis() {
     .attr("r", 5)
     .attr("fill", "red");
 
-  // Show the modal
   modal.style.display = "block";
 
-  // Close the modal when the close button is clicked
   closeBtn.onclick = () => {
     modal.style.display = "none";
   };
 
-  // Close the modal when clicking outside the modal content
   window.onclick = (event) => {
     if (event.target === modal) {
       modal.style.display = "none";
