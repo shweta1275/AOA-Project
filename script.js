@@ -200,6 +200,8 @@ async function selectionSort() {
   isSorting = false;
   currentI = 0;
   currentJ = 0;
+
+  enableRewind(); // Make the rewind button visible and functional
 }
 
 function enableRewind() {
